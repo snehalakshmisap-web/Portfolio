@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sneha Lakshmi — Senior SAP ABAP Consultant</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d1117;
+    --paper: #f5f0e8;
+    --accent: #b5451b;
+    --gold: #c8922a;
+    --muted: #7a7060;
+    --line: #d4ccc0;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.4;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hero-left {
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid var(--line);
+    position: relative;
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 60px; right: 60px;
+    height: 1px;
+    background: var(--line);
+    display: none;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-name {
+    font-size: clamp(52px, 6vw, 88px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.35s forwards;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-title {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+  }
+
+  .hero-summary {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #3a3028;
+    max-width: 480px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.65s forwards;
+  }
+
+  .hero-contact {
+    margin-top: 52px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-item:hover { color: var(--accent); }
+
+  .contact-item span.dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .hero-right {
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    top: 40px; right: -20px;
+    font-size: clamp(120px, 14vw, 200px);
+    font-weight: 600;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--line);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    pointer-events: none;
+    opacity: 0;
+    animation: fadeIn 1.2s 0.4s forwards;
+    user-select: none;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.9s forwards;
+  }
+
+  .stat-box {
+    background: var(--paper);
+    padding: 36px 32px;
+    transition: background 0.3s;
+  }
+
+  .stat-box:hover { background: #ede7d8; }
+
+  .stat-num {
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 100px 60px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 56px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* ── EXPERTISE ── */
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+
+  .expertise-card {
+    background: var(--paper);
+    padding: 40px 36px;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .expertise-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--accent);
+    transition: height 0.4s;
+  }
+
+  .expertise-card:hover { background: #ede7d8; }
+  .expertise-card:hover::before { height: 100%; }
+
+  .card-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    letter-spacing: 0.1em;
+  }
+
+  .card-title {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .card-desc {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 60px;
+    padding: 52px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .exp-item:last-child { border-bottom: none; }
+
+  .exp-meta { padding-top: 4px; }
+
+  .exp-period {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  .exp-company {
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .exp-role {
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .exp-client {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .exp-bullets li {
+    font-size: 16px;
+    font-weight: 300;
+    color: #3a3028;
+    padding-left: 24px;
+    position: relative;
+    line-height: 1.65;
+  }
+
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 14px;
+  }
+
+  /* ── SKILLS ── */
+  .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+
+  .skill-group { margin-bottom: 36px; }
+
+  .skill-group-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 6px 14px;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+    cursor: default;
+  }
+
+  .tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(181,69,27,0.04);
+  }
+
+  /* ── ACHIEVEMENTS ── */
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+
+  .achievement-card {
+    background: var(--paper);
+    padding: 44px 40px;
+    transition: background 0.3s;
+  }
+
+  .achievement-card:hover { background: #ede7d8; }
+
+  .ach-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--accent);
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 20px;
+  }
+
+  .ach-title {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+
+  .ach-desc {
+    font-size: 15px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ── FOOTER / CTA ── */
+  .cta {
+    padding: 100px 60px;
+    text-align: center;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .cta-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+
+  .cta-heading {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 48px;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-heading em { font-style: italic; color: var(--gold); }
+
+  .cta-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .cta-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--paper);
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(245,240,232,0.3);
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .cta-link:hover { color: var(--gold); border-color: var(--gold); }
+
+  .footer-copy {
+    margin-top: 60px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: rgba(245,240,232,0.3);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { border-right: none; border-bottom: 1px solid var(--line); padding: 60px 32px; }
+    .hero-right { padding: 60px 32px; }
+    .hero-bg-text { display: none; }
+    .expertise-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 20px; }
+    .skills-layout { grid-template-columns: 1fr; }
+    .achievements-grid { grid-template-columns: 1fr; }
+    section { padding: 60px 32px; }
+    .cta { padding: 80px 32px; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero" style="border-bottom:1px solid var(--line); padding:0;">
+  <div class="hero-left">
+    <p class="eyebrow">Senior SAP ABAP Consultant · Available for Freelance</p>
+    <h1 class="hero-name">Sneha<br><em>Lakshmi</em></h1>
+    <p class="hero-title">SAP ABAP · Fiori · BTP · CDS · RAP</p>
+    <p class="hero-summary">Enterprise SAP specialist with 4+ years delivering complex RICEFW solutions, custom enhancements, and modern Fiori applications for Fortune-500 clients. I own end-to-end delivery — from technical specification to go-live.</p>
+    <div class="hero-contact">
+      <a class="contact-item" href="tel:+917032404932"><span class="dot"></span>+91 70324 04932</a>
+      <a class="contact-item" href="mailto:sneha.lakshmisap@gmail.com"><span class="dot"></span>sneha.lakshmisap@gmail.com</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bg-text">SAP</div>
+    <div class="stats-grid">
+      <div class="stat-box"><div class="stat-num">4+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat-box"><div class="stat-num">30+</div><div class="stat-label">RICEFW Objects</div></div>
+      <div class="stat-box"><div class="stat-num">150k</div><div class="stat-label">Records Migrated</div></div>
+      <div class="stat-box"><div class="stat-num">0</div><div class="stat-label">Critical Post-Live Defects</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERTISE ── -->
+<section>
+  <div class="section-inner">
+    <p class="section-label reveal">Core Expertise</p>
+    <div class="expertise-grid">
+      <div class="expertise-card reveal">
+        <div class="card-num">01</div>
+        <h3 class="card-title">ABAP & RICEFW Development</h3>
+        <p class="card-desc">Complex reports, BAPIs, BADIs, implicit/explicit enhancements, user exits, function modules, and OOP ABAP. Full RICEFW ownership across MM, SD, FI, and RTR modules.</p>
+      </div>
+      <div class="expertise-card reveal">
+        <div class="card-num">02</div>
+        <h3 class="card-title">Fiori, CDS & RAP</h3>
+        <p class="card-desc">End-to-end Fiori application development using CDS views with complex joins, AMDP, annotations, and RESTful ABAP Programming (RAP) for modern SAP UX.</p>
+      </div>
+      <div class="expertise-card reveal">
+        <div class="card-num">03</div>
+        <h3 class="card-title">SAP BTP & Full-Stack</h3>
+        <p class="card-desc">SAP BTP-hosted applications using CAP, Node.js, and React.js. Integration with SAP backend services for scalable cloud-ready enterprise solutions.</p>
+      </div>
+      <div class="expertise-card reveal">
+        <div class="card-num">04</div>
+        <h3 class="card-title">Forms & Output</h3>
+        <p class="card-desc">Adobe Interactive Forms, SmartForms, and SAPScript — customized to client branding and regulatory requirements for billing, PO, and payment outputs.</p>
+      </div>
+      <div class="expertise-card reveal">
+        <div class="card-num">05</div>
+        <h3 class="card-title">Data Migration</h3>
+        <p class="card-desc">Large-scale material master and vendor data migrations using LSMW, custom BAPI wrappers, and IDocs — 150,000+ records delivered with zero critical defects.</p>
+      </div>
+      <div class="expertise-card reveal">
+        <div class="card-num">06</div>
+        <h3 class="card-title">Performance Tuning</h3>
+        <p class="card-desc">SAT/ST05-based analysis and optimization of ABAP programs. Resolved critical SLA breaches by restructuring SQL and reducing average runtimes by up to 60%.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section>
+  <div class="section-inner">
+    <p class="section-label reveal">Experience</p>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <p class="exp-period">Mar 2023 — Present</p>
+        <p class="exp-company">PwC India</p>
+      </div>
+      <div>
+        <h3 class="exp-role">Senior SAP ABAP Developer</h3>
+        <p class="exp-client">Clients · OxyChem (Chemical Mfg) · ThompsonGas (Energy)</p>
+        <ul class="exp-bullets">
+          <li>Architected and delivered 30+ complex RICEFW objects end-to-end — no functional support required for technical analysis</li>
+          <li>Built high-complexity BADIs and implicit enhancements for custom procurement workflows, reducing manual processing time by 40%</li>
+          <li>Designed CDS views with complex joins and annotations for Fiori analytical apps consumed by 200+ business users across RTR and STP</li>
+          <li>Led data migration programs migrating 150,000+ records with zero critical post-go-live defects</li>
+          <li>Delivered complex Adobe Interactive Forms for SD billing, MM purchase orders, and FI payment advices</li>
+          <li>Resolved P1/P2 critical defects during go-live hypercare for two full-cycle SAP implementations</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <p class="exp-period">Aug 2022 — Feb 2023</p>
+        <p class="exp-company">PwC India</p>
+      </div>
+      <div>
+        <h3 class="exp-role">Advanced Development Intern → ABAP Developer</h3>
+        <ul class="exp-bullets">
+          <li>Delivered production-ready ABAP code within the first month on live client projects</li>
+          <li>Developed classical and ALV reports for SD and MM modules, replacing legacy programs with optimized solutions</li>
+          <li>Built foundational expertise across SmartForms, SAPScript, LSMW, and function module development</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section>
+  <div class="section-inner">
+    <p class="section-label reveal">Technical Skills</p>
+    <div class="skills-layout">
+      <div>
+        <div class="skill-group reveal">
+          <p class="skill-group-title">Core ABAP</p>
+          <div class="skill-tags">
+            <span class="tag">Reports (ALV/Classical)</span>
+            <span class="tag">BAPIs</span>
+            <span class="tag">BADIs</span>
+            <span class="tag">User Exits</span>
+            <span class="tag">OOP ABAP</span>
+            <span class="tag">Function Modules</span>
+            <span class="tag">Enhancements</span>
+            <span class="tag">AMDP</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <p class="skill-group-title">Fiori & Modern SAP</p>
+          <div class="skill-tags">
+            <span class="tag">Fiori Elements</span>
+            <span class="tag">SAP UI5</span>
+            <span class="tag">CDS Views</span>
+            <span class="tag">RAP</span>
+            <span class="tag">SEGW</span>
+            <span class="tag">SAP BTP</span>
+            <span class="tag">CAP</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <p class="skill-group-title">Forms & Output</p>
+          <div class="skill-tags">
+            <span class="tag">Adobe Forms</span>
+            <span class="tag">SmartForms</span>
+            <span class="tag">SAPScript</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group reveal">
+          <p class="skill-group-title">SAP Modules</p>
+          <div class="skill-tags">
+            <span class="tag">MM</span>
+            <span class="tag">SD</span>
+            <span class="tag">FI/CO</span>
+            <span class="tag">RTR</span>
+            <span class="tag">STP</span>
+            <span class="tag">CM</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <p class="skill-group-title">Migration & Integration</p>
+          <div class="skill-tags">
+            <span class="tag">LSMW</span>
+            <span class="tag">IDocs</span>
+            <span class="tag">Migration Cockpit</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">React.js</span>
+            <span class="tag">FastAPI</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <p class="skill-group-title">Tools & AI</p>
+          <div class="skill-tags">
+            <span class="tag">Eclipse ADT</span>
+            <span class="tag">SAP GUI</span>
+            <span class="tag">Git</span>
+            <span class="tag">SAT/ST05</span>
+            <span class="tag">RAG Pipelines</span>
+            <span class="tag">FAISS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ACHIEVEMENTS ── -->
+<section>
+  <div class="section-inner">
+    <p class="section-label reveal">Achievements</p>
+    <div class="achievements-grid">
+      <div class="achievement-card reveal">
+        <span class="ach-badge">1st Place · 2025</span>
+        <h3 class="ach-title">PwC Internal SAP AI Hackathon</h3>
+        <p class="ach-desc">Won first place among 100+ participants by building an AI-powered talent matching platform using React, Node.js, and generative AI — replacing manual staffing processes with conversational AI and predictive analytics.</p>
+      </div>
+      <div class="achievement-card reveal">
+        <span class="ach-badge">Prize Winner · 2022</span>
+        <h3 class="ach-title">ETHIndia — Push Protocol Prize</h3>
+        <p class="ach-desc">Won at India's largest Ethereum hackathon by engineering SeedChain — a blockchain solution for agricultural supply chain integrity using Ethereum smart contracts and cryptographic verification.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EDUCATION ── -->
+<section style="padding-top:80px; padding-bottom:80px;">
+  <div class="section-inner">
+    <p class="section-label reveal">Education</p>
+    <div class="exp-item reveal" style="border-bottom:none; padding-bottom:0;">
+      <div class="exp-meta">
+        <p class="exp-period">2019 — 2023</p>
+        <p class="exp-company">GPA · 8.2 / 10.0</p>
+      </div>
+      <div>
+        <h3 class="exp-role">B.Tech in Information Technology</h3>
+        <p class="exp-client">Visakhapatnam, India</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<div class="cta">
+  <p class="cta-label">Open to Freelance Engagements</p>
+  <h2 class="cta-heading">Let's build something<br><em>exceptional</em> together.</h2>
+  <div class="cta-links">
+    <a class="cta-link" href="tel:+917032404932">+91 70324 04932</a>
+    <a class="cta-link" href="mailto:sneha.lakshmisap@gmail.com">sneha.lakshmisap@gmail.com</a>
+  </div>
+  <p class="footer-copy">© 2025 Sneha Lakshmi · Senior SAP ABAP Consultant</p>
+</div>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
