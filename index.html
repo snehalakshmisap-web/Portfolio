@@ -16,7 +16,7 @@
     --muted: #7a7060;
     --line: #d4ccc0;
     --serif: 'Cormorant Garamond', Georgia, serif;
-    --mono: 'DM Mono', monospace;
+    --mono: 'DM Mono', 'Courier New', monospace;
   }
 
   html { scroll-behavior: smooth; }
@@ -30,23 +30,11 @@
     overflow-x: hidden;
   }
 
-  /* ── NOISE TEXTURE OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 100;
-    opacity: 0.4;
-  }
-
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    position: relative;
     border-bottom: 1px solid var(--line);
   }
 
@@ -56,16 +44,6 @@
     flex-direction: column;
     justify-content: center;
     border-right: 1px solid var(--line);
-    position: relative;
-  }
-
-  .hero-left::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 60px; right: 60px;
-    height: 1px;
-    background: var(--line);
-    display: none;
   }
 
   .eyebrow {
@@ -136,7 +114,7 @@
 
   .contact-item:hover { color: var(--accent); }
 
-  .contact-item span.dot {
+  .contact-item .dot {
     width: 6px; height: 6px;
     border-radius: 50%;
     background: var(--gold);
@@ -343,7 +321,7 @@
   }
 
   .exp-bullets li::before {
-    content: '—';
+    content: '\2014';
     position: absolute;
     left: 0;
     color: var(--gold);
@@ -436,7 +414,7 @@
     line-height: 1.7;
   }
 
-  /* ── FOOTER / CTA ── */
+  /* ── CTA ── */
   .cta {
     padding: 100px 60px;
     text-align: center;
@@ -502,7 +480,6 @@
     to   { opacity: 1; }
   }
 
-  /* Scroll reveal */
   .reveal {
     opacity: 0;
     transform: translateY(32px);
@@ -526,22 +503,22 @@
     .achievements-grid { grid-template-columns: 1fr; }
     section { padding: 60px 32px; }
     .cta { padding: 80px 32px; }
-    .stats-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- ── HERO ── -->
+<!-- HERO -->
 <section class="hero" style="border-bottom:1px solid var(--line); padding:0;">
   <div class="hero-left">
-    <p class="eyebrow">Senior SAP ABAP Consultant · Available for Freelance</p>
+    <p class="eyebrow">Senior SAP ABAP Consultant &middot; Available for Freelance</p>
     <h1 class="hero-name">Sneha<br><em>Lakshmi</em></h1>
-    <p class="hero-title">SAP ABAP · Fiori · BTP · CDS · RAP</p>
-    <p class="hero-summary">Enterprise SAP specialist with 4+ years delivering complex RICEFW solutions, custom enhancements, and modern Fiori applications for Fortune-500 clients. I own end-to-end delivery — from technical specification to go-live.</p>
+    <p class="hero-title">SAP ABAP &middot; Fiori &middot; BTP &middot; CDS &middot; RAP</p>
+    <p class="hero-summary">Enterprise SAP specialist with 4+ years delivering complex RICEFW solutions, custom enhancements, and modern Fiori applications for Fortune-500 clients. I own end-to-end delivery &mdash; from technical specification to go-live.</p>
     <div class="hero-contact">
       <a class="contact-item" href="tel:+917032404932"><span class="dot"></span>+91 70324 04932</a>
-      <a class="contact-item" href="/cdn-cgi/l/email-protection#d8abb6bdb0b9f6b4b9b3abb0b5b1abb9a898bfb5b9b1b4f6bbb7b5"><span class="dot"></span><span class="__cf_email__" data-cfemail="e79489828f86c98b868c948f8a8e948697a7808a868e8bc984888a">[email&#160;protected]</span></a>
+      <a class="contact-item" href="mailto:sneha.lakshmisap@gmail.com"><span class="dot"></span>sneha.lakshmisap@gmail.com</a>
+      <a class="contact-item" href="https://snehalakshmisap-web.github.io/Portfolio/" target="_blank"><span class="dot"></span>snehalakshmisap-web.github.io/Portfolio</a>
     </div>
   </div>
   <div class="hero-right">
@@ -555,35 +532,35 @@
   </div>
 </section>
 
-<!-- ── EXPERTISE ── -->
+<!-- EXPERTISE -->
 <section>
   <div class="section-inner">
     <p class="section-label reveal">Core Expertise</p>
     <div class="expertise-grid">
       <div class="expertise-card reveal">
         <div class="card-num">01</div>
-        <h3 class="card-title">ABAP & RICEFW Development</h3>
+        <h3 class="card-title">ABAP &amp; RICEFW Development</h3>
         <p class="card-desc">Complex reports, BAPIs, BADIs, implicit/explicit enhancements, user exits, function modules, and OOP ABAP. Full RICEFW ownership across MM, SD, FI, and RTR modules.</p>
       </div>
       <div class="expertise-card reveal">
         <div class="card-num">02</div>
-        <h3 class="card-title">Fiori, CDS & RAP</h3>
+        <h3 class="card-title">Fiori, CDS &amp; RAP</h3>
         <p class="card-desc">End-to-end Fiori application development using CDS views with complex joins, AMDP, annotations, and RESTful ABAP Programming (RAP) for modern SAP UX.</p>
       </div>
       <div class="expertise-card reveal">
         <div class="card-num">03</div>
-        <h3 class="card-title">SAP BTP & Full-Stack</h3>
+        <h3 class="card-title">SAP BTP &amp; Full-Stack</h3>
         <p class="card-desc">SAP BTP-hosted applications using CAP, Node.js, and React.js. Integration with SAP backend services for scalable cloud-ready enterprise solutions.</p>
       </div>
       <div class="expertise-card reveal">
         <div class="card-num">04</div>
-        <h3 class="card-title">Forms & Output</h3>
-        <p class="card-desc">Adobe Interactive Forms, SmartForms, and SAPScript — customized to client branding and regulatory requirements for billing, PO, and payment outputs.</p>
+        <h3 class="card-title">Forms &amp; Output</h3>
+        <p class="card-desc">Adobe Interactive Forms, SmartForms, and SAPScript &mdash; customized to client branding and regulatory requirements for billing, PO, and payment outputs.</p>
       </div>
       <div class="expertise-card reveal">
         <div class="card-num">05</div>
         <h3 class="card-title">Data Migration</h3>
-        <p class="card-desc">Large-scale material master and vendor data migrations using LSMW, custom BAPI wrappers, and IDocs — 150,000+ records delivered with zero critical defects.</p>
+        <p class="card-desc">Large-scale material master and vendor data migrations using LSMW, custom BAPI wrappers, and IDocs &mdash; 150,000+ records delivered with zero critical defects.</p>
       </div>
       <div class="expertise-card reveal">
         <div class="card-num">06</div>
@@ -594,21 +571,21 @@
   </div>
 </section>
 
-<!-- ── EXPERIENCE ── -->
+<!-- EXPERIENCE -->
 <section>
   <div class="section-inner">
     <p class="section-label reveal">Experience</p>
 
     <div class="exp-item reveal">
       <div class="exp-meta">
-        <p class="exp-period">Mar 2023 — Present</p>
+        <p class="exp-period">Mar 2023 &mdash; Present</p>
         <p class="exp-company">PwC India</p>
       </div>
       <div>
         <h3 class="exp-role">Senior SAP ABAP Developer</h3>
-        <p class="exp-client">Domains: Chemical Manufacturing | Energy &amp; Utilities</p>
+        <p class="exp-client">Domains: Chemical Manufacturing &nbsp;|&nbsp; Energy &amp; Utilities</p>
         <ul class="exp-bullets">
-          <li>Architected and delivered 30+ complex RICEFW objects end-to-end — no functional support required for technical analysis</li>
+          <li>Architected and delivered 30+ complex RICEFW objects end-to-end &mdash; no functional support required for technical analysis</li>
           <li>Built high-complexity BADIs and implicit enhancements for custom procurement workflows, reducing manual processing time by 40%</li>
           <li>Designed CDS views with complex joins and annotations for Fiori analytical apps consumed by 200+ business users across RTR and STP</li>
           <li>Led data migration programs migrating 150,000+ records with zero critical post-go-live defects</li>
@@ -620,8 +597,7 @@
 
     <div class="exp-item reveal">
       <div class="exp-meta">
-        <p class="exp-period">Aug 2022 — Feb 2023</p>
-        <p class="exp-company">PwC India</p>
+        <p class="exp-period">Aug 2022 &mdash; Feb 2023</p>
       </div>
       <div>
         <h3 class="exp-role">SAP ABAP Developer</h3>
@@ -635,7 +611,7 @@
   </div>
 </section>
 
-<!-- ── SKILLS ── -->
+<!-- SKILLS -->
 <section>
   <div class="section-inner">
     <p class="section-label reveal">Technical Skills</p>
@@ -655,7 +631,7 @@
           </div>
         </div>
         <div class="skill-group reveal">
-          <p class="skill-group-title">Fiori & Modern SAP</p>
+          <p class="skill-group-title">Fiori &amp; Modern SAP</p>
           <div class="skill-tags">
             <span class="tag">Fiori Elements</span>
             <span class="tag">SAP UI5</span>
@@ -667,7 +643,7 @@
           </div>
         </div>
         <div class="skill-group reveal">
-          <p class="skill-group-title">Forms & Output</p>
+          <p class="skill-group-title">Forms &amp; Output</p>
           <div class="skill-tags">
             <span class="tag">Adobe Forms</span>
             <span class="tag">SmartForms</span>
@@ -688,7 +664,7 @@
           </div>
         </div>
         <div class="skill-group reveal">
-          <p class="skill-group-title">Migration & Integration</p>
+          <p class="skill-group-title">Migration &amp; Integration</p>
           <div class="skill-tags">
             <span class="tag">LSMW</span>
             <span class="tag">IDocs</span>
@@ -699,7 +675,7 @@
           </div>
         </div>
         <div class="skill-group reveal">
-          <p class="skill-group-title">Tools & AI</p>
+          <p class="skill-group-title">Tools &amp; AI</p>
           <div class="skill-tags">
             <span class="tag">Eclipse ADT</span>
             <span class="tag">SAP GUI</span>
@@ -714,33 +690,33 @@
   </div>
 </section>
 
-<!-- ── ACHIEVEMENTS ── -->
+<!-- ACHIEVEMENTS -->
 <section>
   <div class="section-inner">
     <p class="section-label reveal">Achievements</p>
     <div class="achievements-grid">
       <div class="achievement-card reveal">
-        <span class="ach-badge">1st Place · 2025</span>
+        <span class="ach-badge">1st Place &middot; 2025</span>
         <h3 class="ach-title">Internal SAP AI Hackathon</h3>
-        <p class="ach-desc">Won first place among 100+ participants by building an AI-powered talent matching platform using React, Node.js, and generative AI — replacing manual staffing processes with conversational AI and predictive analytics.</p>
+        <p class="ach-desc">Won first place among 100+ participants by building an AI-powered talent matching platform using React, Node.js, and generative AI &mdash; replacing manual staffing processes with conversational AI and predictive analytics.</p>
       </div>
       <div class="achievement-card reveal">
-        <span class="ach-badge">Prize Winner · 2022</span>
-        <h3 class="ach-title">ETHIndia — Push Protocol Prize</h3>
-        <p class="ach-desc">Won at India's largest Ethereum hackathon by engineering SeedChain — a blockchain solution for agricultural supply chain integrity using Ethereum smart contracts and cryptographic verification.</p>
+        <span class="ach-badge">Prize Winner &middot; 2022</span>
+        <h3 class="ach-title">ETHIndia &mdash; Push Protocol Prize</h3>
+        <p class="ach-desc">Won at India's largest Ethereum hackathon by engineering SeedChain &mdash; a blockchain solution for agricultural supply chain integrity using Ethereum smart contracts and cryptographic verification.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── EDUCATION ── -->
+<!-- EDUCATION -->
 <section style="padding-top:80px; padding-bottom:80px;">
   <div class="section-inner">
     <p class="section-label reveal">Education</p>
     <div class="exp-item reveal" style="border-bottom:none; padding-bottom:0;">
       <div class="exp-meta">
-        <p class="exp-period">2019 — 2023</p>
-        <p class="exp-company">GPA · 8.2 / 10.0</p>
+        <p class="exp-period">2019 &mdash; 2023</p>
+        <p class="exp-company">GPA &middot; 8.2 / 10.0</p>
       </div>
       <div>
         <h3 class="exp-role">B.Tech in Information Technology</h3>
@@ -750,15 +726,54 @@
   </div>
 </section>
 
-<!-- ── CTA ── -->
+<!-- CTA -->
 <div class="cta">
   <p class="cta-label">Open to Freelance Engagements</p>
   <h2 class="cta-heading">Let's build something<br><em>exceptional</em> together.</h2>
   <div class="cta-links">
     <a class="cta-link" href="tel:+917032404932">+91 70324 04932</a>
-    <a class="cta-link" href="/cdn-cgi/l/email-protection#a5d6cbc0cdc48bc9c4ced6cdc8ccd6c4d5e5c2c8c4ccc98bc6cac8"><span class="__cf_email__" data-cfemail="71021f1419105f1d101a02191c1802100131161c10181d5f121e1c">[email&#160;protected]</span></a>
+    <a class="cta-link" href="mailto:sneha.lakshmisap@gmail.com">sneha.lakshmisap&#64;gmail.com</a>
   </div>
-  <p class="footer-copy">© 2025 Sneha Lakshmi · Senior SAP ABAP Consultant</p>
+  <p class="footer-copy">&#169; 2025 Sneha Lakshmi &middot; Senior SAP ABAP Consultant</p>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></sc
+<script>
+  (function() {
+    function showEl(el) { el.classList.add('visible'); }
+
+    function revealAll() {
+      document.querySelectorAll('.reveal').forEach(showEl);
+    }
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            showEl(e.target);
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        observer.observe(el);
+      });
+
+      // Safety fallback after 1.5s
+      setTimeout(revealAll, 1500);
+    } else {
+      revealAll();
+    }
+
+    // Trigger on load for above-fold elements
+    window.addEventListener('load', function() {
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        var rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) showEl(el);
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
